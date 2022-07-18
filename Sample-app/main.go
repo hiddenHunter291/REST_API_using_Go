@@ -30,6 +30,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
 	db := client.Database("testDatabase")
 	morningCollection := db.Collection("morning_tasks")
 
@@ -114,7 +115,7 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{"message": "new collection created!!"})
 	})
 
-	//route to create a group of todos
+	//route to delete a group of todos
 	router.POST("/deleteTasks", func(c *gin.Context) {
 		data, _ := ioutil.ReadAll(c.Request.Body)
 		var coll collection
@@ -128,5 +129,6 @@ func main() {
 		}
 		c.JSON(http.StatusOK, gin.H{"message": "Deleted successfully!!"})
 	})
+
 	router.Run("localhost:8080")
 }
